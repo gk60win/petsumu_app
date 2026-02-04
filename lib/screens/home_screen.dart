@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'search_screen.dart';
 import 'favorites_screen.dart';
+import 'fudo_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,7 +28,30 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: Stack(
+        children: [
+          _widgetOptions.elementAt(_selectedIndex),
+
+          // ★ 物件一覧ボタン（仮設置：画面右下に表示）
+          if (_selectedIndex == 0)
+            Positioned(
+              bottom: 80,
+              right: 20,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FudoListScreen(),
+                    ),
+                  );
+                },
+                child: const Text("物件一覧を見る"),
+              ),
+            ),
+        ],
+      ),
+
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: _onItemTapped,
         selectedIndex: _selectedIndex,
@@ -52,13 +76,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-ElevatedButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const FudoListScreen()),
-    );
-  },
-  child: const Text("物件一覧を見る"),
-),
