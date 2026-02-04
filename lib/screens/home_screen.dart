@@ -52,3 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+ElevatedButton(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const FudoListScreen()),
+    );
+  },
+  child: const Text("物件一覧を見る"),
+),
