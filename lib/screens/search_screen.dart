@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'property_list_screen.dart';
+import 'fudo_list_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -35,7 +35,10 @@ class SearchScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const PropertyListScreen()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => FudoListScreen()),
+                        );
                       },
                       icon: const Icon(Icons.search),
                       label: const Text('エリアから探す'),
@@ -58,10 +61,10 @@ class SearchScreen extends StatelessWidget {
                 mainAxisSpacing: 16,
                 crossAxisSpacing: 16,
                 children: [
-                  _buildCategoryCard(context, '犬と住む', Icons.pets, Colors.orange.shade100),
-                  _buildCategoryCard(context, '猫と住む', Icons.catching_pokemon, Colors.blue.shade100),
-                  _buildCategoryCard(context, '大型犬可', Icons.home_work, Colors.green.shade100),
-                  _buildCategoryCard(context, '多頭飼い', Icons.groups, Colors.purple.shade100),
+                  _buildCard(context, '犬と住む', Icons.pets, Colors.orange.shade100),
+                  _buildCard(context, '猫と住む', Icons.catching_pokemon, Colors.blue.shade100),
+                  _buildCard(context, '大型犬可', Icons.home_work, Colors.green.shade100),
+                  _buildCard(context, '多頭飼い', Icons.groups, Colors.purple.shade100),
                 ],
               ),
             ],
@@ -71,11 +74,12 @@ class SearchScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryCard(BuildContext context, String title, IconData icon, Color color) {
+  Widget _buildCard(BuildContext context, String title, IconData icon, Color color) {
     return InkWell(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const PropertyListScreen()));
-      },
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => FudoListScreen()),
+      ),
       child: Container(
         decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(12)),
         child: Column(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/fudo_api.dart';
 import '../models/fudo.dart';
+import 'fudo_detail_screen.dart';  // ← 必ず追加する！
 
 class FudoListScreen extends StatefulWidget {
   @override
@@ -41,7 +42,12 @@ class _FudoListScreenState extends State<FudoListScreen> {
                 title: Text(fudo.title),
                 subtitle: Text("ID: ${fudo.id}"),
                 onTap: () {
-                  // 物件詳細へ遷移（作成可能）
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => FudoDetailScreen(fudo: fudo),
+                    ),
+                  );
                 },
               );
             },

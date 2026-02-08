@@ -28,29 +28,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          _widgetOptions.elementAt(_selectedIndex),
+      body: _widgetOptions.elementAt(_selectedIndex),
 
-          // ★ 物件一覧ボタン（仮設置：画面右下に表示）
-          if (_selectedIndex == 0)
-            Positioned(
-              bottom: 80,
-              right: 20,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const FudoListScreen(),
-                    ),
-                  );
-                },
-                child: const Text("物件一覧を見る"),
-              ),
-            ),
-        ],
-      ),
+      floatingActionButton: _selectedIndex == 0
+          ? FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FudoListScreen(),
+                  ),
+                );
+              },
+              child: const Icon(Icons.list),
+            )
+          : null,
 
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: _onItemTapped,
